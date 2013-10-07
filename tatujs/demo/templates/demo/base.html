@@ -1,0 +1,82 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>{% block title %}Tatu Example{% endblock %}</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.css' %}">
+</head>
+
+<body>
+  <div class="navbar {% block navbar_class %}{% endblock %}">
+    <a class="navbar-brand" href="{% url 'index' %}">TatuJS Example</a>
+
+    <ul class="nav navbar-nav">
+      <li class="{% block page0_class %}{% endblock %}"><a href="{% url 'page0' %}">Page0</a></li>
+      <li class="{% block page1_class %}{% endblock %}"><a href="{% url 'page1' %}">Page1</a></li>
+      <li class="{% block page2_class %}{% endblock %}"><a href="{% url 'page2' %}">Page2</a></li>
+    </ul>
+  </div>
+
+  <div class="container">
+    {% block container %}{% endblock %}
+
+    <hr/>
+    <p class="footer text-center">
+      <b>TatuJS</b> - Smart preloader.
+    </p>
+  </div>
+
+  <!-- TatuJS -->
+  <script src="{% static 'tatu.min.js' %}"></script>
+
+  <!-- Settings -->
+  <script>
+    /*
+     * TatuJS settings
+     */
+    tatu.configuration.extractor = 'silent';
+    tatu.configuration.headerName = 'X-Source';
+    tatu.configuration.reload = false;
+    tatu.configuration.targetSymbol = '>>';
+    tatu.configuration.concurrency = 42;
+
+    tatu.configuration.sources = {
+      /*
+       * Pages of the menu
+       */
+      '.navbar a': {
+        'loader': 'html',
+
+        'selectors': 'title,.container,.navbar',
+        'handlers': 'title,outer,history,inspect,event',
+        'cache': 'object',
+
+        'sources': {
+          'img': {
+            'loader': 'image'
+          },
+          'video': {
+            'loader': 'video',
+            'minBuffered': 10
+          }
+        }
+      },
+
+      /*
+       * Tabs inside Page 0
+       */
+      '.tatu-tabs a': {
+        'loader': 'html',
+
+        'selectors': 'title,.tatu-tab-content,.tatu-tabs',
+        'handlers': 'title,outer,inspect,event',
+        'cache': 'object'
+      }
+    };
+  </script>
+</body>
+</html>

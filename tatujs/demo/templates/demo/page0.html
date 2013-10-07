@@ -1,0 +1,31 @@
+{% extends 'demo/base.html' %}
+
+{% block title %}{{ block.super }} - Page 0{% endblock %}
+
+{% block page0_class %}active{% endblock %}
+
+{% block container %}
+  <div class="row">
+    <div class="col-8">
+      <h2>Page 0</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ornare eros ac feugiat. Donec pretium tristique nisi, placerat fringilla ipsum gravida ac. Mauris ut risus eget elit ullamcorper rhoncus. Duis tempus egestas arcu imperdiet feugiat. Quisque egestas mi ipsum. Fusce congue, arcu ac accumsan vestibulum, elit tortor dignissim urna, quis tristique velit turpis ut odio. Cras ut elit nec felis sollicitudin fringilla id sit amet magna. Mauris sed eros sollicitudin, pretium ante sit amet, rutrum orci. Donec rutrum nec metus sed tempus.
+      </p>
+    </div>
+
+    <div class="col-4">
+      <ul class="nav nav-pills tatu-tabs">
+        <li class="{% block page0_tab0_class %}{% endblock %}"><a href="{% url 'page0_tab0' %}">Tab0</a></li>
+        <li class="{% block page0_tab1_class %}{% endblock %}"><a href="{% url 'page0_tab1' %}">Tab1</a></li>
+      </ul>
+
+      <br/>
+
+      <div class="well tatu-tab-content">
+        {% block tabcontent %}
+          Click on a tab.
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
