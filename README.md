@@ -1,4 +1,7 @@
 # django-tatujs
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 Integration of [TatuJS](https://github.com/sophilabs/tatujs) with Django.
 
 ## Installation
